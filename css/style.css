@@ -1,0 +1,390 @@
+/* =========================================================
+   1. THEME VARIABLES
+========================================================= */
+
+:root {
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --ink: #13203a;
+  --muted: #5d6b85;
+  --line: #d3dae6;
+  --accent: #0f6b5e;
+  --accent-ink: #ffffff;
+  --total: #fff3c4;
+  --danger: #b4232a;
+
+  box-sizing: border-box;
+
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Dark mode based on system preference */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1524;
+    --surface: #18223a;
+    --ink: #e8edf7;
+    --muted: #97a5c2;
+    --line: #2c3a5a;
+    --accent: #3cc2ad;
+    --accent-ink: #08201b;
+    --total: #3b3410;
+    --danger: #ff7b82;
+
+    color-scheme: dark;
+  }
+}
+
+/* Explicit dark theme */
+
+:root[data-theme="dark"] {
+  --bg: #0e1524;
+  --surface: #18223a;
+  --ink: #e8edf7;
+  --muted: #97a5c2;
+  --line: #2c3a5a;
+  --accent: #3cc2ad;
+  --accent-ink: #08201b;
+  --total: #3b3410;
+  --danger: #ff7b82;
+
+  color-scheme: dark;
+}
+
+/* =========================================================
+   2. GLOBAL STYLES
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+
+  background: var(--bg);
+  color: var(--ink);
+
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  line-height: 1.35;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+
+  padding: 16px 12px 100px;
+}
+
+h1 {
+  margin: 8px 0 2px;
+
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.sub {
+  margin: 0 0 12px;
+
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* =========================================================
+   3. INPUTS
+========================================================= */
+
+input {
+  width: 100%;
+  min-width: 0;
+
+  padding: 8px;
+
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+
+  background: var(--surface);
+
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+input:focus,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* =========================================================
+   4. BUTTONS
+========================================================= */
+
+button {
+  padding: 9px 13px;
+
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+
+  background: var(--surface);
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.primary {
+  border-color: var(--accent);
+
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+button.danger {
+  color: var(--danger);
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* =========================================================
+   5. TOOLBAR AND SEARCH
+========================================================= */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 12px;
+}
+
+#search {
+  flex: 1;
+  min-width: 160px;
+
+  text-align: left;
+}
+
+/* =========================================================
+   6. INVENTORY ITEM CARD
+========================================================= */
+
+.item {
+  margin-bottom: 8px;
+  padding: 10px;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  background: var(--surface);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+.name {
+  flex: 1;
+
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+/* =========================================================
+   7. PIECES PER BOX
+========================================================= */
+
+.per {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.per input {
+  width: 64px;
+}
+
+.x {
+  padding: 0 6px;
+
+  border: none;
+  background: none;
+
+  color: var(--muted);
+  font-size: 1.3rem;
+}
+
+/* =========================================================
+   8. INVENTORY LOCATIONS
+========================================================= */
+
+.locs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.loc {
+  padding: 6px;
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.loc h3 {
+  margin: 0 0 4px;
+
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.pair label {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+/* =========================================================
+   9. ITEM TOTALS
+========================================================= */
+
+.res {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+
+  margin-top: 8px;
+  padding: 8px 10px;
+
+  border-radius: 8px;
+  background: var(--total);
+}
+
+.res b {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   10. GRAND TOTAL FOOTER
+========================================================= */
+
+.grand {
+  position: fixed;
+
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.grand b {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   11. ADD ITEM SECTION
+========================================================= */
+
+details {
+  margin-top: 14px;
+  padding: 10px 12px;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  background: var(--surface);
+}
+
+summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+details .bar {
+  margin: 10px 0 0;
+}
+
+.new-item-name {
+  flex: 1;
+  min-width: 140px;
+
+  text-align: left;
+}
+
+.new-item-per {
+  width: 110px;
+}
+
+.note {
+  margin-bottom: 12px;
+  padding: 8px 10px;
+
+  border-radius: 8px;
+  background: var(--total);
+
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   12. RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 520px) {
+  .locs {
+    grid-template-columns: 1fr;
+  }
+
+  .loc {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    align-items: center;
+  }
+
+  .loc h3 {
+    margin: 0;
+  }
+}

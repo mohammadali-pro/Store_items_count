@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>Store Stock Counter</title>
+
+    <!-- Application stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Application JavaScript -->
+    <script src="js/app.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <!-- Application header -->
+      <header>
+        <h1>Store Stock Counter</h1>
+
+        <p class="sub">
+          Each location shows boxes and loose pieces. Change "Per box" and the
+          counts convert automatically.
+        </p>
+      </header>
+
+      <!-- Information message -->
+      <div class="note">
+        The "Per box" sizes are initial estimates. Check and correct them for
+        each item.
+      </div>
+
+      <!-- Search and inventory actions -->
+      <section class="bar">
+        <input
+          id="search"
+          type="text"
+          inputmode="search"
+          enterkeyhint="search"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="Search items"
+          aria-label="Search items"
+        />
+
+        <button id="clear" class="danger">Clear counts</button>
+
+        <button id="reset">Reload starting counts</button>
+      </section>
+
+      <!-- Inventory list -->
+      <section id="list" aria-label="Inventory items"></section>
+
+      <!-- Add new inventory item -->
+      <details>
+        <summary>Add an item</summary>
+
+        <div class="bar">
+          <input
+            id="newName"
+            type="text"
+            placeholder="Item name"
+            aria-label="Item name"
+            class="new-item-name"
+          />
+
+          <input
+            id="newPer"
+            type="number"
+            min="1"
+            inputmode="numeric"
+            placeholder="Per box"
+            aria-label="Pieces per box"
+            class="new-item-per"
+          />
+
+          <button id="add" class="primary">Add item</button>
+        </div>
+
+        <p id="msg" class="sub" role="status"></p>
+      </details>
+    </main>
+
+    <!-- Fixed grand total -->
+    <footer class="grand">
+      <span>Total pieces</span>
+
+      <b id="grand">0</b>
+    </footer>
+  </body>
+</html>
